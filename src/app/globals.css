@@ -1,26 +1,97 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --afo-bg: #0d0814;
+  --afo-surface: #1a1228;
+  --afo-card: #241833;
+  --afo-gray: #46464a;
+  --afo-muted: #c4b8d4;
+  --afo-gold: #f9bb30;
+  --afo-neon: #fef108;
+  --afo-purple: #7b2cbf;
+  --afo-purple-bright: #c084fc;
+  --afo-glow: #c2b2ca;
+  --afo-white: #fafafa;
+  --afo-black: #040006;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-afo-bg: var(--afo-bg);
+  --color-afo-surface: var(--afo-surface);
+  --color-afo-card: var(--afo-card);
+  --color-afo-gray: var(--afo-gray);
+  --color-afo-muted: var(--afo-muted);
+  --color-afo-gold: var(--afo-gold);
+  --color-afo-neon: var(--afo-neon);
+  --color-afo-purple: var(--afo-purple);
+  --color-afo-purple-bright: var(--afo-purple-bright);
+  --color-afo-glow: var(--afo-glow);
+  --color-afo-white: var(--afo-white);
+  --color-afo-black: var(--afo-black);
+  --font-sans: var(--font-exo2);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--afo-bg);
+  color: var(--afo-white);
+  font-family: var(--font-exo2), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 18px color-mix(in srgb, var(--afo-purple) 45%, transparent),
+      0 0 36px color-mix(in srgb, var(--afo-purple-bright) 18%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 26px color-mix(in srgb, var(--afo-purple) 65%, transparent),
+      0 0 52px color-mix(in srgb, var(--afo-purple-bright) 28%, transparent);
+  }
+}
+
+.glow-button {
+  animation: pulse-glow 3.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .glow-button {
+    animation: none;
+  }
+}
+
+.polygon-clip {
+  clip-path: polygon(
+    0 12px,
+    12px 0,
+    calc(100% - 12px) 0,
+    100% 12px,
+    100% calc(100% - 12px),
+    calc(100% - 12px) 100%,
+    12px 100%,
+    0 calc(100% - 12px)
+  );
+}
+
+.polygon-clip-sm {
+  clip-path: polygon(
+    0 8px,
+    8px 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0 calc(100% - 8px)
+  );
 }
